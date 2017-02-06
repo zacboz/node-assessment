@@ -30,13 +30,13 @@ favorites: array of strings
 
 The users module has the following methods:
 
-##### Add
+#### Add
 * Add a properly formatted user.
 * This will throw an exception if the user is improperly formatted!
 * Will automatically add an id and return the new user object, with the id.
 So don't put an id on a new user!
 
-##### findOne
+#### findOne
 * Takes in a key and a value
 * Returns the first user where the key matches the value
 * Example:
@@ -44,12 +44,12 @@ So don't put an id on a new user!
 users.findOne('id', 1) // User object with an id of 1;
 ```
 
-##### find
+#### find
 * Takes in a key and a value
 * Like findOne but it will return all matching users as an array
 * If it only finds one user it will still return an array.
 
-##### remove
+#### remove
 * Takes in a key and a value
 * Like find but will remove all matching users.
 
