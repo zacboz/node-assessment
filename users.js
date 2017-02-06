@@ -1,13 +1,26 @@
-const users = require('./userData');
-const validateUser = require('./utils').validateUser;
+const userData = require('./lib/userData');
+const validateUser = require('./lib/utils').validateUser;
 const _ = require('lodash');
+let users;
+
+userData.subscribe(userData => {
+  users = userData;
+})
 
 function index() {
-  return users;
+  return users
 }
 
 function genId() {
-  return users[users.length - 1].id + 1;
+  return _.last(users).id + 1;
+}
+
+exports.find = function(key, value) {
+  let results = _.filter(users, user => {
+    return user[key] == value;
+  })
+
+  return results[0] ? results : null;
 }
 
 exports.findOne = function(key, value) {
@@ -15,9 +28,8 @@ exports.findOne = function(key, value) {
     return index();
   }
 
-
   for (let i = 0; i < users.length; i++) {
-    if (users[i][key] === value) {
+    if (users[i][key] == value) {
       return users[i];
     }
   }
@@ -41,9 +53,10 @@ exports.add = function(user) {
 }
 
 exports.remove = function(key, value) {
-  for (let i = users.length-1; i >= 0; i--) {
-    if (users[i][key] === value) {
-      users.splice(i, 1);
+  let _users = users;
+  for (let i = _users.length-1; i >= 0; i--) {
+    if (_users[i][key] === value) {
+      _users.splice(i, 1);
     }
   }
 }

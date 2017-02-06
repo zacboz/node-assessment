@@ -1,8 +1,17 @@
 import test from 'ava';
 import users from '../users';
-import userData from '../userData';
+import userDataCtrl from '../lib/userData';
 import testUsers from './support/testUsers';
 import _ from 'lodash';
+
+let userData;
+userDataCtrl.subscribe(_userData => {
+  userData = _userData;
+})
+
+test.afterEach(t => {
+  userDataCtrl.reset();
+})
 
 test('will get all users if find is invoked without any arguments', t => {
   t.plan(2);
@@ -14,7 +23,7 @@ test('will get all users if find is invoked without any arguments', t => {
 })
 
 test('will find a user by key and value', t => {
-  t.plan(3);
+  t.plan(5);
 
 
   let result = users.findOne('id', 3);
@@ -22,7 +31,24 @@ test('will find a user by key and value', t => {
   t.false(Array.isArray(result));
   t.true(typeof result === 'object');
 
-  t.deepEqual(result, userData[2]);
+  t.deepEqual(
+    _.find(userData, user => user.id == 3), 
+    result
+  );
+
+  result = users.findOne('id', 2);
+
+  t.deepEqual(
+    _.find(userData, user => user.id == 2), 
+    result
+  );
+
+  result = users.findOne('id', 1);
+
+  t.deepEqual(
+    _.find(userData, user => user.id == 1), 
+    result
+  );
 })
 
 test('will return null if nothing is found', t => {
@@ -39,6 +65,10 @@ test('will add a user', t => {
 
 
   t.truthy(result.id);
+
+  result = users.findOne('id', result.id);
+
+  t.is(result.first_name, testUser.first_name);
 })
 
 test('will reject an invalid user with an invalid key', t => {
@@ -69,7 +99,9 @@ test('will reject an invalid user missing a key', t => {
 })
 
 test('will remove user by id', t => {
-  t.plan(1);
+  t.plan(2);
+
+  t.truthy(users.findOne('id', 1));
   users.remove('id', 1);
 
   let result = users.findOne('id', 1);
@@ -81,8 +113,37 @@ test('will not remove any users if none match', t => {
   let l = users.findOne().length;
 
   users.remove('foo', 'bar');
-
   t.is(users.findOne().length, l);
 
-  t.not(users.findOne().length, 0);
+})
+
+test('find will match all users', t => {
+  t.plan(11);
+  t.truthy(users.find);
+
+  let result = users.find('language', 'klingon');
+
+  result.forEach(user => {
+    t.is(user.language, 'klingon');
+  })
+})
+
+test('find will return null if no users match', t => {
+  let result = users.find('foo', 'bar');
+
+  t.falsy(result);
+})
+
+test('ids will not conflict', t => {
+  let ids = users.find().map(user => user.id);
+
+  let newUser = users.add(testUsers.getNewUser());
+
+  ids.forEach(id => {
+    if (id == newUser.id) {
+      t.fail();
+    }
+  })
+
+  t.pass();
 })

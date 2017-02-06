@@ -53,6 +53,16 @@ users.findOne('id', 1) // User object with an id of 1;
 * Takes in a key and a value
 * Like find but will remove all matching users.
 
+## User Controller
+1. Get All Users.
+2. Get User By Id.
+3. Get User By Last Name.
+4. Get User By Email.
+5. Get All Admin Users.
+6. Get All Non Admin Users (regular users)
+7. Get All users with specified favorites.
+8. Get all users with age under given age. 
+
 ## Running Tests
 
 Tests can be run automatically. After setup, run `npm test` to check tests.

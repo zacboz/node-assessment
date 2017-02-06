@@ -1,19 +1,19 @@
 import test from 'ava';
-import {validateUser} from '../utils';
-import users from '../userData.json';
+import {validateUser} from '../lib/utils';
+import users from '../lib/userData.json';
+import {getNewUser} from './support/testUsers';
 import _ from 'lodash';
 
 test('will validate a good user', t => {
   t.plan(1);
-  let testUser = _.cloneDeep(users[0]);
-  delete testUser.id;
+  let testUser = getNewUser();
   
   t.true(validateUser(testUser));
 })
 
 test('will invalidate improper users', t => {
   t.plan(1);
-  let testUser = _.cloneDeep(users[0]);
+  let testUser = getNewUser();
 
   testUser.favorites = '';
 
