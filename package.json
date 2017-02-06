@@ -1,0 +1,27 @@
+{
+  "name": "node-assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "users.js",
+  "directories": {
+    "test": "test"
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ava": "^0.18.1",
+    "lodash": "^4.17.4"
+  },
+  "repository": {
+    "url": "https://github.com/DevMountain/node-assessment"
+  }
+}
