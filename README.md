@@ -55,13 +55,27 @@ users.findOne('id', 1) // User object with an id of 1;
 
 ## User Controller
 1. Get All Users.
+..*Write a function called readAll that will get all users from the users module and send it with a status 200.
 2. Get User By Id.
-3. Get User By Last Name.
-4. Get User By Email.
-5. Get All Admin Users.
-6. Get All Non Admin Users (regular users)
-7. Get All users with specified favorites.
-8. Get all users with age under given age. 
+..*Write a function called findUserById that will use a user id from the request parameters to find the user with that id and send that user's information back with a status 200. If there is no user with that ID, it should send back a status 404.
+3. Get All Admin Users.
+..*Write a function called getAdmins which will find all users with a type of 'admin', and send them back with status 200.
+4. Get All Non Admin Users (regular users)
+..*Write a function called getNonAdmins which will find all users who do not have a type of 'admin' and send them back with status 200.
+5. Get All users with specified favorites.
+..*The function getUsersByFavorites will use the favorites array provided in the request body and use it to find all users with one of those favorites in their favorites array. Send back those users with a status 200.
+6. Get all users with age under given age.
+..*Write a function, getUsersByAgeLimit, that will find all users under the age provided in the request parameters and send those users back with a status 200.
+7. Get User By Last Name.
+..*Write a function called findUserByQuery. If there is a query in the request for lastName, the function will use a last name from the request query object and find the user with that last name. Make sure that the search is case-insensitive. If the user is found (or an array of users), send it back with a status 200; if not, send back status 404.
+8. Get User By Email.
+..*Adjust findUserByQuery to search for a user by email, if the request contains the query 'email'. Again, it will send back that found user with a status 200, or if not found, a status 404.
+9. Add new user.
+..*Write a function, createUser, that will add a user from the request body to the users module. Make sure the user is formatted correctly (as shown above), or the users module will give you an error. Remember, the users module will generate an id itself, so you don't have to. Send back the new user (with automatically generated id) with a status 200.
+10. Update user by ID.
+..*Write a function called updateUser which will find a user by the id in the request parameters, then update it, changing only those properties sent in the request body. Send back the updated user with a status 200.
+11. Delete a user by ID.
+..*Your function, removeUser, should find a user by the id in the request parameters, then use the user module's remove functionality to delete the user. Send back a status 200 when successful.
 
 ## Running Tests
 
