@@ -147,3 +147,19 @@ test('ids will not conflict', t => {
 
   t.pass();
 })
+
+test.serial('will update a user record', t => {
+  users.update('id', 1, {first_name: 'billy-bob'});
+
+  let result = users.findOne('id', 1);
+
+  t.truthy(result);
+  t.is(result.first_name, 'billy-bob');
+
+  users.update('id', 2, {email: 'foo@bar.com'});
+
+  result = users.findOne('id', 2);
+
+  t.truthy(result);
+  t.is(result.email, 'foo@bar.com');
+})

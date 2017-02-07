@@ -60,3 +60,9 @@ exports.remove = function(key, value) {
     }
   }
 }
+
+exports.update = function(key, value, update) {
+  let user = _.find(users, [key, value]);
+
+  _.assign(user, update);
+}
