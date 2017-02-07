@@ -78,15 +78,38 @@ users.findOne('id', 1) // User object with an id of 1;
 ..*Your function, removeUser, should take in a userId, find a user by that id, then use the user module's remove functionality to delete the user. Return the deleted item.
 
 ## Endpoints
-Once you are finished with your controller, write endpoints that will accept the test's requests:
+Once you are finished with your controller, write endpoints that will accept the test's requests.
+You are expected to use the method above associated with each endpoint:
 
 1. `'GET' /api/users`
 Respond with an array of all users, with status 200.
 
+This endpoint can be called with one of these params, which you should be prepared to address:
+* favorites : Return all users who have this favorite in their list of favorites.
+* age : Return all users who have an age less than this age.
+* lastname : Return all users whose last name matches.
+* email : Return one user whose email matches.
+
 2. `'GET' /api/users/` + userId
 The test will a GET request with the userId as a parameter to this endpoint. If the user is found, respond with status 200 and send that user information. If no user was found, responsd with a status 404.
 
-3. `'GET' /api/users/`
+3. `'GET' /api/admins/`
+Respond with status 200, and an array of all admins.
+
+4. `'GET' /api/nonadmins/`
+Respond with status 200, and an array of all non-admin users.
+
+5. `'PUT' /api/users/` + userId
+The test will PUT with an object in the body. You should update the user matching userId
+with this object.
+
+6. `'POST' /api/users/`
+The test will POST with a valid user object in the body. You should add this user and return status 200.
+
+7. `'DELETE' /api/users/` + userId
+The test will DELETE with a param of a userId. You should remove the user with matching userId,
+returning status 200 and the deleted user.
+
 ## Running Tests
 
 Tests can be run automatically. After setup, run `npm test` to check tests.
