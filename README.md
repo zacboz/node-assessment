@@ -61,7 +61,7 @@ users.findOne('id', 1) // User object with an id of 1;
 3. Get All Admin Users.
 ..*Write a function called getAdmins which will return an array of all users with a type of 'admin'. Return null if none are found.
 4. Get All Non Admin Users (regular users)
-..*Write a function called getNonAdmins which will return an array of all users who do not have a type of 'admin'. Return null if none are found.
+..*Write a function called getNonAdmins which will return an array of all users who have a type of 'user'. Return null if none are found.
 5. Get All users with a specified favorite.
 ..*The function getUsersByFavorite will take in a string, favorite, and use it to return all users with that favorite in their favorites array. If none are found, return null.
 6. Get all users with age under given age.
@@ -84,14 +84,14 @@ You are expected to use the method above associated with each endpoint:
 1. `'GET' /api/users`
 Respond with an array of all users, with status 200.
 
-This endpoint can be called with one of these params, which you should be prepared to address:
+This endpoint can be called with one of these queries, which you should be prepared to address:
 * favorites : Return all users who have this favorite in their list of favorites.
 * age : Return all users who have an age less than this age.
 * lastname : Return all users whose last name matches.
 * email : Return one user whose email matches.
 
 2. `'GET' /api/users/` + userId
-The test will a GET request with the userId as a parameter to this endpoint. If the user is found, respond with status 200 and send that user information. If no user was found, responsd with a status 404.
+The test will a GET request with the userId as a parameter to this endpoint. Remember, request params will come as strings. If the user is found, respond with status 200 and send that user information. If no user was found, respond with a status 404.
 
 3. `'GET' /api/admins/`
 Respond with status 200, and an array of all admins.
