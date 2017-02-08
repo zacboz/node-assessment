@@ -142,7 +142,7 @@ test('PUT: /api/users/ + userId', async t => {
   t.is(res.first_name, "foo", "Should return the entire updated user");
 })
 
-test('POST: /api/users/', async t => {
+test('POST: /api/users', async t => {
   let res = await request(app)
     .post('/api/users')
     .send({

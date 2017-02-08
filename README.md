@@ -4,6 +4,7 @@
 1. Run `npm install` to install testing dependencies.
 2. Create a file called `server.js`. All your server code and endpoints should be in this file.
 3. Create a file called `userCtrl.js`. You will write your endpoints and export each one from this file.
+** NOTE: `module.exports` your `app` at the end of `server.js`, otherwise the tests won't work **
 
 ## Users Module
 You will be using the users module in your test. It is located in the file `users.js`
@@ -90,20 +91,20 @@ This endpoint can be called with one of these queries, which you should be prepa
 * lastname : Return all users whose last name matches.
 * email : Return one user whose email matches.
 
-2. `'GET' /api/users/` + userId
+2. `'GET' /api/users` + userId
 The test will a GET request with the userId as a parameter to this endpoint. Remember, request params will come as strings. If the user is found, respond with status 200 and send that user information. If no user was found, respond with a status 404.
 
-3. `'GET' /api/admins/`
+3. `'GET' /api/admins`
 Respond with status 200, and an array of all admins.
 
-4. `'GET' /api/nonadmins/`
+4. `'GET' /api/nonadmins`
 Respond with status 200, and an array of all non-admin users.
 
 5. `'PUT' /api/users/` + userId
 The test will PUT with an object in the body. You should update the user matching userId
 with this object.
 
-6. `'POST' /api/users/`
+6. `'POST' /api/users`
 The test will POST with a valid user object in the body. You should add this user and return status 200.
 
 7. `'DELETE' /api/users/` + userId
