@@ -5,6 +5,7 @@ test('will reset users', t => {
 
   let users;
   userData.subscribe(newUserData => {
+    console.log(`First user id: ${newUserData[0].id}`);
     users = newUserData
   })
 
@@ -15,4 +16,14 @@ test('will reset users', t => {
   userData.reset();
 
   t.falsy(users[0].foo);
+
+  t.is(users[0].id, 1);
+
+  users.splice(0, 1);
+
+  t.is(users[0].id, 2);
+
+  userData.reset();
+
+  t.is(users[0].id, 1);
 })

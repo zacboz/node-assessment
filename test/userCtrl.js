@@ -19,7 +19,7 @@ test('readAll', t => {
 
   let result = results[0];
 
-  t.truthy(result.first_name)
+  t.truthy(result.first_name);
   t.true(typeof result.first_name === 'string');
   t.truthy(result.id);
   t.is(result.id, 1);
