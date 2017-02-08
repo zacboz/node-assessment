@@ -53,10 +53,9 @@ exports.add = function(user) {
 }
 
 exports.remove = function(key, value) {
-  let _users = users;
-  for (let i = _users.length-1; i >= 0; i--) {
-    if (_users[i][key] === value) {
-      _users.splice(i, 1);
+  for (let i = users.length-1; i >= 0; i--) {
+    if (users[i][key] === value) {
+      users.splice(i, 1);
     }
   }
 }

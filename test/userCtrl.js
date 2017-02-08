@@ -49,9 +49,12 @@ test('getNonAdmins', t => {
   let result = userCtrl.getNonAdmins();
   t.truthy(result);
   t.true(Array.isArray(result), "Should have received an array")
-  t.is(result.length, 68);
+  // t.is(result.length, 68);
 
-  result.forEach(user => t.is(user.type, 'user'));
+  result.forEach(user => t.true(
+    user.type == 'user' ||
+    user.type == 'moderator'
+  ));
 })
 
 test('getUsersByFavorite', t => {
@@ -131,10 +134,10 @@ test('updateUser', t => {
   t.is(result.first_name, 'foo');
 })
 
-test('removeUser', t => {
+test.serial('removeUser', t => {
   t.truthy(users.findOne('id', 1));
 
-  userCtrl.removeUser('id', 1);
+  userCtrl.removeUser(1);
 
   t.falsy(users.findOne('id', 1));
 })

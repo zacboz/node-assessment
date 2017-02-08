@@ -5,7 +5,6 @@ test('will reset users', t => {
 
   let users;
   userData.subscribe(newUserData => {
-    console.log(`First user id: ${newUserData[0].id}`);
     users = newUserData
   })
 

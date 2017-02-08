@@ -13,6 +13,7 @@ test.before(() => {
   stub = sandbox.stub(userCtrl, 'findUserById')
 
   stub.withArgs(1).returns({id: 1, first_name: 'foo'})
+  stub.withArgs('1').returns({id: 1, first_name: 'foo'})
 
   stub = sandbox.stub(userCtrl, 'getUsersByFavorite')
 
@@ -29,6 +30,7 @@ test.before(() => {
   stub = sandbox.stub(userCtrl, 'updateUser')
 
   stub.withArgs(1, {first_name: 'foo'}).returns({id: 1, first_name: 'foo'})
+  stub.withArgs('1', {first_name: 'foo'}).returns({id: 1, first_name: 'foo'})
 
   stub = sandbox.stub(userCtrl, 'createUser')
 
@@ -63,6 +65,7 @@ test.before(() => {
     stub = sandbox.stub(userCtrl, 'removeUser')
 
     stub.withArgs(1).returns({id: 1, first_name: 'foo', type: 'admin'})
+    stub.withArgs('1').returns({id: 1, first_name: 'foo', type: 'admin'})
 
 })
 
