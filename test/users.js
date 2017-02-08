@@ -58,7 +58,7 @@ test('will return null if nothing is found', t => {
   t.falsy(result);
 })
 
-test('will add a user', t => {
+test.serial('will add a user', t => {
   let testUser = testUsers.getNewUser();
 
   let result = users.add(testUser);
@@ -98,7 +98,7 @@ test('will reject an invalid user missing a key', t => {
   t.regex(result, /Expected user to have first_name\./)
 })
 
-test('will remove user by id', t => {
+test.serial('will remove user by id', t => {
   t.plan(2);
 
   t.truthy(users.findOne('id', 1));
@@ -109,7 +109,7 @@ test('will remove user by id', t => {
   t.falsy(result);
 })
 
-test('will not remove any users if none match', t => {
+test.serial('will not remove any users if none match', t => {
   let l = users.findOne().length;
 
   users.remove('foo', 'bar');
@@ -134,7 +134,7 @@ test('find will return null if no users match', t => {
   t.falsy(result);
 })
 
-test('ids will not conflict', t => {
+test.serial('ids will not conflict', t => {
   let ids = users.find().map(user => user.id);
 
   let newUser = users.add(testUsers.getNewUser());
