@@ -19,7 +19,7 @@ test('readAll', t => {
 
   let result = results[0];
 
-  t.truthy(result.first_name)
+  t.truthy(result.first_name);
   t.true(typeof result.first_name === 'string');
   t.truthy(result.id);
   t.is(result.id, 1);
@@ -47,16 +47,15 @@ test('getAdmins', t => {
 
 test('getNonAdmins', t => {
   let result = userCtrl.getNonAdmins();
-
   t.truthy(result);
   t.true(Array.isArray(result), "Should have received an array")
   t.is(result.length, 68);
-  
+
   result.forEach(user => t.is(user.type, 'user'));
 })
 
-test('getUsersByFavorites', t => {
-  let result = userCtrl.getUsersByFavorites('dogs');
+test('getUsersByFavorite', t => {
+  let result = userCtrl.getUsersByFavorite('dogs');
 
   t.truthy(result);
   t.true(Array.isArray(result));
@@ -71,7 +70,7 @@ test('getUsersByAgeLimit', t => {
 
   t.truthy(result);
   t.true(Array.isArray(result));
-  
+
   result.forEach(user => {
     t.true(user.age <= 50);
   })
@@ -123,7 +122,7 @@ test('createUser', t => {
 })
 
 test('updateUser', t => {
-  userCtrl.updateUser('id', 2, {first_name: 'foo'});
+  userCtrl.updateUser(2, {first_name: 'foo'});
 
   let result = users.findOne('id', 2);
 

@@ -55,27 +55,27 @@ users.findOne('id', 1) // User object with an id of 1;
 
 ## User Controller
 1. Get All Users.
-..*Write a function called readAll that will return all users from the users module.
+  -Write a function called readAll that will return all users from the users module.
 2. Get User By Id.
-..*Write a function called findUserById that will take in a userId, use that to find the user with that id and return that user's information. If there is no user with that ID, return null.
+  -Write a function called findUserById that will take in a userId, use that to find the user with that id and return that user's information. If there is no user with that ID, return null.
 3. Get All Admin Users.
-..*Write a function called getAdmins which will return an array of all users with a type of 'admin'. Return null if none are found.
+  -Write a function called getAdmins which will return an array of all users with a type of 'admin'. Return null if none are found.
 4. Get All Non Admin Users (regular users)
-..*Write a function called getNonAdmins which will return an array of all users who do not have a type of 'admin'. Return null if none are found.
+  -Write a function called getNonAdmins which will return an array of all users who have a type of 'user'. Return null if none are found.
 5. Get All users with a specified favorite.
-..*The function getUsersByFavorite will take in a string, favorite, and use it to return all users with that favorite in their favorites array. If none are found, return null.
+  -The function getUsersByFavorite will take in a string, favorite, and use it to return all users with that favorite in their favorites array. If none are found, return null.
 6. Get all users with age under given age.
-..*Write a function, getUsersByAgeLimit, that will take in an age and return all users under the age provided. If none are found, it will return null.
+  -Write a function, getUsersByAgeLimit, that will take in an age and return all users under the age provided. If none are found, it will return null.
 7. Get User By Last Name.
-..*Write a function called findUserByQuery. This function will take in two parameters: a query term and the value. If the query term is 'last_name', the function will use the value parameter to return the user (or users) with that last name. Make sure that the search is case-insensitive. If the user is not found, return null.
+  -Write a function called findUserByQuery. This function will take in two parameters: a query term and the value. If the query term is 'last_name', the function will use the value parameter to return the user (or users) with that last name. Make sure that the search is case-insensitive. If the user is not found, return null.
 8. Get User By Email.
-..*Adjust findUserByQuery to search for a user by email, if the query term equals 'email'. Again, it will search using the value parameter, return that found user, or if not found, return null.
+  -Adjust findUserByQuery to search for a user by email, if the query term equals 'email'. Again, it will search using the value parameter, return that found user, or if not found, return null.
 9. Add new user.
-..*Write a function, createUser, that takes a user object as a parameter to the users module. Create a user using this object. Remember, the users module will generate an id itself, so you don't have to. If the user is not in the correct format, the users module will give you an error. If there is an error from the users module, return null. Otherwise, return the new user (with automatically generated id).
+  -Write a function, createUser, that takes a user object as a parameter to the users module. Create a user using this object. Remember, the users module will generate an id itself, so you don't have to. If the user is not in the correct format, the users module will give you an error. If there is an error from the users module, return null. Otherwise, return the new user (with automatically generated id).
 10. Update user by ID.
-..*Write a function called updateUser which will take in a userId and an object. The object will contain the properties that need to be changed, along with their new values. Find a user by the id, then update it, changing only those properties sent in the object. Return the updated user.
+  -Write a function called updateUser which will take in a userId and an object. The object will contain the properties that need to be changed, along with their new values. Find a user by the id, then update it, changing only those properties sent in the object. Return the updated user.
 11. Delete a user by ID.
-..*Your function, removeUser, should take in a userId, find a user by that id, then use the user module's remove functionality to delete the user. Return the deleted item.
+  -Your function, removeUser, should take in a userId, find a user by that id, then use the user module's remove functionality to delete the user. Return the deleted item.
 
 ## Endpoints
 Once you are finished with your controller, write endpoints that will accept the test's requests.
@@ -84,14 +84,14 @@ You are expected to use the method above associated with each endpoint:
 1. `'GET' /api/users`
 Respond with an array of all users, with status 200.
 
-This endpoint can be called with one of these params, which you should be prepared to address:
+This endpoint can be called with one of these queries, which you should be prepared to address:
 * favorites : Return all users who have this favorite in their list of favorites.
 * age : Return all users who have an age less than this age.
 * lastname : Return all users whose last name matches.
 * email : Return one user whose email matches.
 
 2. `'GET' /api/users/` + userId
-The test will a GET request with the userId as a parameter to this endpoint. If the user is found, respond with status 200 and send that user information. If no user was found, responsd with a status 404.
+The test will a GET request with the userId as a parameter to this endpoint. Remember, request params will come as strings. If the user is found, respond with status 200 and send that user information. If no user was found, respond with a status 404.
 
 3. `'GET' /api/admins/`
 Respond with status 200, and an array of all admins.
