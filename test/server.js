@@ -73,7 +73,7 @@ test('GET: /api/users', async t => {
     .get('/api/users')
     .expect(200)
 
-  t.true(Array.isArray(res.body));
+  t.true(Array.isArray(res.body), "Didn't get back an array");
 
   res = res.body[0];
 
@@ -86,12 +86,12 @@ test('GET: /api/users/ + userId', async t => {
     .get('/api/users/1')
     .expect(200)
 
-  t.true(typeof res.body === 'object');
-  t.true(!Array.isArray(res.body));
+  t.true(typeof res.body === 'object', "Should return the user object");
+  t.true(!Array.isArray(res.body), "Shouldn't be an array");
 
   res = res.body;
-  t.is(res.id, 1);
-  t.is(res.first_name, "foo");
+  t.is(res.id, 1, "Should return the correct user");
+  t.is(res.first_name, "foo", "Should return the entire user object");
 })
 
 test('GET: /api/admins', async t => {
@@ -99,13 +99,13 @@ test('GET: /api/admins', async t => {
     .get('/api/admins')
     .expect(200)
 
-  t.true(Array.isArray(res.body));
+  t.true(Array.isArray(res.body), "Didn't receive an array");
 
   res = res.body[0];
 
   t.is(res.id, 2);
   t.is(res.first_name, "foo");
-  t.is(res.type, "admin");
+  t.is(res.type, "admin", "Should return only admins");
 })
 
 test('GET: /api/nonadmins', async t => {
@@ -113,7 +113,7 @@ test('GET: /api/nonadmins', async t => {
     .get('/api/nonadmins')
     .expect(200)
 
-  t.true(Array.isArray(res.body));
+  t.true(Array.isArray(res.body), "Didn't receive an array");
 
   res = res.body[0];
 
@@ -130,13 +130,13 @@ test('PUT: /api/users/ + userId', async t => {
     .set('Accept', 'application/json')
     .expect(200)
 
-    t.true(typeof res.body === 'object');
+    t.true(typeof res.body === 'object', "Should return the user object");
     t.true(!Array.isArray(res.body));
 
   res = res.body;
 
-  t.is(res.id, 1);
-  t.is(res.first_name, "foo");
+  t.is(res.id, 1, "Should return the entire updated user");
+  t.is(res.first_name, "foo", "Should return the entire updated user");
 })
 
 test('POST: /api/users/', async t => {
@@ -156,15 +156,15 @@ test('POST: /api/users/', async t => {
     })
     .expect(200)
 
-    t.true(typeof res.body === 'object');
-    t.true(!Array.isArray(res.body));
+    t.true(typeof res.body === 'object', "Should return the updated user object");
+    t.true(!Array.isArray(res.body), "Shouldn't be an array");
 
 
   res = res.body;
 
-  t.is(res.id, 1);
-  t.is(res.first_name, "foo");
-  t.is(res.type, "admin");
+  t.is(res.id, 1, "Should return the entire updated user");
+  t.is(res.first_name, "foo", "Should return the entire updated user");
+  t.is(res.type, "admin", "Should return the entire updated user");
 })
 
 test('DELETE: /api/users/ + userId', async t => {
@@ -172,13 +172,13 @@ test('DELETE: /api/users/ + userId', async t => {
     .delete('/api/users/1')
     .expect(200)
 
-    t.true(typeof res.body === 'object');
-    t.true(!Array.isArray(res.body));
+    t.true(typeof res.body === 'object', "Should return the deleted user.");
+    t.true(!Array.isArray(res.body), "Shouldn't be an array.");
 
 
   res = res.body;
 
-  t.is(res.id, 1);
-  t.is(res.first_name, "foo");
-  t.is(res.type, "admin");
+  t.is(res.id, 1, "Should return the entire deleted user.");
+  t.is(res.first_name, "foo", "Should return the entire deleted user.");
+  t.is(res.type, "admin", "Should return the entire deleted user.");
 })
