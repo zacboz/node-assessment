@@ -16,7 +16,7 @@ test.afterEach(t => {
 test('will get all users if find is invoked without any arguments', t => {
   t.plan(2);
 
-  let result = users.findOne();
+  let result = users.find();
 
   t.true(Array.isArray(result));
   t.deepEqual(result[0], userData[0]);
@@ -110,10 +110,10 @@ test.serial('will remove user by id', t => {
 })
 
 test.serial('will not remove any users if none match', t => {
-  let l = users.findOne().length;
+  let l = users.find.length;
 
   users.remove('foo', 'bar');
-  t.is(users.findOne().length, l);
+  t.is(users.find.length, l);
 
 })
 
