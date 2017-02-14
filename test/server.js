@@ -138,7 +138,7 @@ test('PUT: /api/users/ + userId', async t => {
 
   res = res.body;
 
-  t.is(res.id, 1, "Should return the entire updated user");
+  t.is(res.id, 1, "Should return the entire updated user. Make sure you are using bodyParser");
   t.is(res.first_name, "foo", "Should return the entire updated user");
 })
 
@@ -165,7 +165,7 @@ test('POST: /api/users', async t => {
 
   res = res.body;
 
-  t.is(res.id, 1, "Should return the entire updated user");
+  t.is(res.id, 1, "Should return the entire updated user. Make sure you are using bodyParser");
   t.is(res.first_name, "foo", "Should return the entire updated user");
   t.is(res.type, "admin", "Should return the entire updated user");
 })
@@ -181,7 +181,7 @@ test('DELETE: /api/users/ + userId', async t => {
 
   res = res.body;
 
-  t.is(res.id, 1, "Should return the entire deleted user.");
+  t.is(res.id, 1, "Should return the entire deleted user. Make sure you are using bodyParser");
   t.is(res.first_name, "foo", "Should return the entire deleted user.");
   t.is(res.type, "admin", "Should return the entire deleted user.");
 })
