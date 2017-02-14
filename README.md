@@ -55,7 +55,13 @@ users.findOne('id', 1) // User object with an id of 1;
 * Like find but will remove all matching users.
 
 #### update
-* Takes in a key, a value, and a user object to update
+* Takes in a key, a value, and an object with some keys and values.
+* The keys and values in the object passed to update will be merged into the first user found matching key and value.
+* Example:
+```
+  users.update('id', 1, {first_name: 'Brett', last_name: 'Internet');
+```
+After this function runs, the user with an id of 1 will have a **first_name** of **Brett** and a **last_name** of **Internet**
 
 ## User Controller
 
