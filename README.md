@@ -31,8 +31,8 @@ favorites: array of strings
 
 The users module has the following methods:
 
-#### Add
-* Add a properly formatted user.
+#### add
+* Takes in a properly formatted user object.
 * This will throw an exception if the user is improperly formatted!
 * Will automatically add an id and return the new user object, with the id.
 So don't put an id on a new user!
@@ -54,6 +54,15 @@ users.findOne('id', 1) // User object with an id of 1;
 * Takes in a key and a value
 * Like find but will remove all matching users.
 
+#### update
+* Takes in a key, a value, and an object with some keys and values.
+* The keys and values in the object passed to update will be merged into the first user found matching key and value.
+* Example:
+```
+  users.update('id', 1, {first_name: 'Brett', last_name: 'Internet');
+```
+After this function runs, the user with an id of 1 will have a **first_name** of **Brett** and a **last_name** of **Internet**
+
 ## User Controller
 1. Get All Users.
   -Write a function called readAll that will return all users from the users module.
@@ -64,7 +73,7 @@ users.findOne('id', 1) // User object with an id of 1;
 4. Get All Non Admin Users (regular users)
   -Write a function called getNonAdmins which will return an array of all users who have a type of 'user'. Return null if none are found.
 5. Get All users with a specified favorite.
-  -The function getUsersByFavorite will take in a string, favorite, and use it to return all users with that favorite in their favorites array. If none are found, return null.
+  -The function getUsersByFavorite will take in a favorite as a string, and use it to return all users with that favorite in their favorites array. If none are found, return null.
 6. Get all users with age under given age.
   -Write a function, getUsersByAgeLimit, that will take in an age and return all users under the age provided. If none are found, it will return null.
 7. Get User By Last Name.
@@ -114,6 +123,8 @@ returning status 200 and the deleted user.
 ## Running Tests
 
 Tests can be run automatically. After setup, run `npm test` to check tests.
+
+Before running the tests, comment out your app.listen() function or you will get an error.
 
 If you want, you can have tests run in watch mode, where tests will run again after files change.
 Run `npm test -- --watch` for watch mode.
