@@ -55,6 +55,12 @@ users.findOne('id', 1) // User object with an id of 1;
 * Like find but will remove all matching users.
 
 ## User Controller
+
+`userCtrl.js`. 
+
+Be sure to follow the instructions for each problem closely.
+**You should not be using req or res inside `userCtrl.js`.** 
+
 1. Get All Users.
   -Write a function called readAll that will return all users from the users module.
 2. Get User By Id.
@@ -79,6 +85,8 @@ users.findOne('id', 1) // User object with an id of 1;
   -Your function, removeUser, should take in a userId, find a user by that id, then use the user module's remove functionality to delete the user. Return the deleted item.
 
 ## Endpoints
+`server.js`
+
 Once you are finished with your controller, write endpoints that will accept the test's requests.
 You are expected to use the method above associated with each endpoint:
 
