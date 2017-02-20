@@ -65,10 +65,10 @@ After this function runs, the user with an id of 1 will have a **first_name** of
 
 ## User Controller
 
-`userCtrl.js`. 
+`userCtrl.js`.
 
 Be sure to follow the instructions for each problem closely.
-**You should not be using req or res inside `userCtrl.js`.** 
+**You should not be using req or res inside `userCtrl.js`.**
 
 1. Get All Users.
   -Write a function called readAll that will return all users from the users module.
