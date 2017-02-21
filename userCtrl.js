@@ -3,42 +3,35 @@ const users = require('./users');
 module.exports = {
 
   readAll: () => {
-    console.log("get all users");
-    let all = users.find();
-    return all;
+    console.log('find all users');
+    let allUsers = users.find();
+    return allUsers;
   },
 
   findUserById: (userId) => {
-    console.log('get user by id');
-    let key = 'id';
-    // console.log(userId);
-    let one = users.findOne(key, userId)
+    console.log('find one user');
+    let one = users.findOne('id', userId);
     return one;
   },
 
   getAdmins: () => {
-    console.log('getting admins');
-    let key = 'type';
-    let value = 'admin'
-    let allAdmin = users.find(key, value);
-    return allAdmin;
+    console.log('find admins');
+    let admins = users.find('type', 'admin');
+    return admins
   },
 
-
   getNonAdmins: () => {
-    console.log('getting non-admins');
-    let key = 'type';
-    let value = 'user';
-    let nonAdmin = users.find(key, value);
+    console.log('find all non-admins');
+    let nonAdmin = users.find('type', 'user');
     return nonAdmin;
   },
 
-  getUsersByFavorite: (favorite) => {
-    console.log('getting users by favorite');
+  getUsersByFavorite: (str) => {
+    console.log('users by favorite');
     let all = users.find();
-    all = all.filter(function(user){
+    all = all.filter((user) => {
       for (let i = 0; i < user.favorites.length; i++) {
-        if (user.favorites[i] == favorite) {
+        if (user.favorites[i] == str){
           return user;
         }
       }
@@ -47,36 +40,36 @@ module.exports = {
   },
 
   getUsersByAgeLimit: (age) => {
-    console.log('getting age limit');
-    let key = 'age';
-    let ageLimit = users.find();
-    return ageLimit.filter( function(user){
+    console.log('get users by age limit');
+    let all = users.find();
+    ageLimit = all.filter((user) => {
       return user.age < age;
-    });
+    })
+    return ageLimit;
   },
 
-  findUserByQuery: (query, value) => {
-    console.log('getting query');
-    let arr = users.find(query, value);
-    return arr;
-  },
-
-  updateUser: (id, object) => {
-    users.update('id', id, object);
-    let user = users.findOne('id', id);
-    console.log(user);
-    return user;
+  findUserByQuery: (term, value) => {
+    console.log('get user by query term');
+    let q = users.find(term, value);
+    return q;
   },
 
   createUser: (user) => {
+    console.log('creating new user');
     let newUser = users.add(user);
     return newUser;
   },
 
+  updateUser: (userId, obj) => {
+    console.log('updating user');
+    let updatedUser = users.update('id', userId, obj);
+    return updatedUser;
+  },
+
   removeUser: (userId) => {
-    let key = 'id';
-    let remove = users.remove(key, userId);
-    return remove;
+    console.log('removing user');
+    let getOuttaHere = users.remove('id', userId);
+    return getOuttaHere;
   }
 
 

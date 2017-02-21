@@ -1,41 +1,40 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const userCtrl = require('./userCtrl');
 const port = 3070;
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 app.get('/api/users', (req, res) => {
-  if (req.query.favorites){
-    let fav = userCtrl.getUsersByFavorite(favorite);
-    res.status(200).json(fav);
+  if(req.query.favorites){
+    let favorite = userCtrl.getUsersByFavorite(str);
+    res.status(200).json(favorite);
   } else if (req.query.age) {
     let ageLimit = userCtrl.getUsersByAgeLimit(age);
     res.status(200).json(ageLimit);
+  } else if (req.query.last_name){
+    let q = userCtrl.findUserByQuery(term, value);
+    res.status(200).json(q);
   } else if (req.query.email) {
-    let arr = userCtrl.findUserByQuery(query, value);
-    res.status(200).json(arr)
+    let q = userCtrl.findUserByQuery(term, value);
+    res.status(200).json(q);
   } else {
-    let all = userCtrl.readAll();
-    res.status(200).json(all);
+    let allUsers = userCtrl.readAll();
+    res.status(200).json(allUsers);
   }
 });
 
 app.get('/api/users/:userId', (req, res) => {
   let one = userCtrl.findUserById(req.params.userId);
-  if (one == null) {
-    res.status(404).json('Not Found');
-  } else {
-    res.status(200).json(one);
-  }
+  res.status(200).json(one);
 });
 
 app.get('/api/admins', (req, res) => {
-  let allAdmin = userCtrl.getAdmins();
-  res.status(200).json(allAdmin);
+  let admins = userCtrl.getAdmins();
+  res.status(200).json(admins);
 });
 
 app.get('/api/nonadmins', (req, res) => {
@@ -43,23 +42,20 @@ app.get('/api/nonadmins', (req, res) => {
   res.status(200).json(nonAdmin);
 });
 
-app.put('/api/users/:userId', (req, res) => {
-  let user = userCtrl.updateUser(req.params.userId, req.body);
-  return res.status(200).json(user);
-});
-
 app.post('/api/users', (req, res) => {
   let newUser = userCtrl.createUser(req.body);
-  return res.status(200).json(newUser);
+  res.status(200).json(newUser);
+});
+
+app.put('/api/users/:userId', (req, res) => {
+  let updatedUser = userCtrl.updateUser(req.params.userId, req.body);
+  res.status(200).json(updatedUser);
 });
 
 app.delete('/api/users/:userId', (req, res) => {
-  let remove = userCtrl.removeUser(req.params.userId);
-  res.status(200).json(remove);
+  let getOuttaHere = userCtrl.removeUser(req.params.userId);
+  res.status(200).json(getOuttaHere);
 });
-
-
-
 
 
 
